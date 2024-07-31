@@ -12,9 +12,15 @@ class User(Base):
     location = Column(String)
     about_me = Column(String)
 
-    def __init__(self, name, email, password, location, about_me):
-        self.name = name
-        self.email = email
-        self.password = password
-        self.location = location
-        self.about_me = about_me
+    class Config:
+        orm_mode = True
+
+
+class Token(Base):
+    __tablename__ = 'token'
+    id = Column(Integer, primary_key=True)
+    access_token = Column(String)
+    refresh_token = Column(String)
+
+    class Config:
+        orm_mode = True
